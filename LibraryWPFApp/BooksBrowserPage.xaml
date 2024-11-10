@@ -1,0 +1,83 @@
+﻿<Page x:Class="LibraryWPFApp.BooksBrowserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LibraryWPFApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BooksBrowserPage">
+
+    <Page.Resources>
+        <Style x:Key="searchBorderStyle" TargetType="Border">
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Width" Value="90" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="Margin" Value="0,0,400,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=searchBtn}" Value="True">
+                    <Setter Property="Background" Value="LightGray" />
+                    <Setter Property="BorderBrush" Value="LightGray" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Style="{StaticResource BG}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="Books Browser"
+                   FontSize="35"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Border Style="{StaticResource searchBorderStyle}">
+            <Button x:Name="searchBtn"
+                    Content="🔎"
+                    FontSize="30"
+                    Style="{StaticResource btnsStyle}"
+                    HorizontalContentAlignment="Left"
+                    Margin="-18,0,18,0"
+                    Click="searchBtn_Click"/>
+        </Border>
+        <Border Grid.Row="1"
+                Background="#FFF"
+                Height="60"
+                HorizontalAlignment="Center"
+                Margin="40,0,0,0"
+                CornerRadius="15"
+                Width="400"
+                >
+            <TextBox x:Name="BrowsingTextBox"
+                     Background="Transparent"
+                     BorderBrush="Transparent"
+                     FontSize="20"/>
+        </Border>
+        </Grid>
+        <Grid Grid.Row="2"
+              Width="500"
+              Height="250"
+              Margin="0,15,0,0"
+              VerticalAlignment="Top">
+            <DataGrid x:Name="booksDataGrid"/>
+        </Grid>
+
+        <Border Style="{StaticResource BorderHoverStyle}"
+                Grid.Row="3">
+            <Button x:Name="adminPageNavBtn"
+                    Style="{StaticResource btnsStyle}"
+                    Content="Go to Administration"
+                    Click="adminPageNavBtn_Click">
+                
+            </Button>
+        </Border>
+    </Grid>
+</Page>
